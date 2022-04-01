@@ -5,7 +5,7 @@ import * as SVGLoaders from 'svg-loaders-react';
 function Joke(){
 
     let data;
-    let url = `https://v2.jokeapi.dev/joke/Any`;
+    let url = `https://api.chucknorris.io/jokes/random`;
     const [joke, setJoke] = useState("");
     const [click, setClick] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ function Joke(){
             let response = await fetch(url);
             data = await response.json();
             console.log(data);
-            setJoke(`${data.setup} ${data.delivery}`);
+            setJoke(`${data.value}`);
             setLoading(false);
 
             } catch(err){
@@ -41,7 +41,7 @@ function Joke(){
             <button>Joke</button>
         </form>
 
-        {loading ? <SVGLoaders.Puff/> : <p className="joke">{joke}</p> }
+        {loading ? <SVGLoaders.Puff className="joke"/> : <p className="joke">{joke}</p> }
 
         
     
